@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>素心华彩 · 花与书的小世界</title>
     <style>
-        /* === 全局重置 & 公主风基调 === */
+        /* === 全局 === */
         * {
             margin: 0;
             padding: 0;
@@ -14,9 +14,9 @@
 
         body {
             font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
-            background: #fcf8f5;   /* 柔白暖底 */
-            background-image: radial-gradient(circle at 10% 30%, rgba(255, 215, 215, 0.15) 0%, transparent 50%),
-                              radial-gradient(circle at 90% 70%, rgba(215, 235, 215, 0.15) 0%, transparent 50%);
+            background: #fcf8f5;
+            background-image: radial-gradient(circle at 10% 30%, rgba(255, 215, 215, 0.12) 0%, transparent 50%),
+                              radial-gradient(circle at 90% 70%, rgba(215, 235, 215, 0.12) 0%, transparent 50%);
             color: #4a3f3a;
             padding: 30px 20px;
         }
@@ -26,13 +26,13 @@
             margin: 0 auto;
         }
 
-        /* === 顶部导航 === */
+        /* === 导航 === */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            padding: 12px 0 28px 0;
+            padding: 12px 0 20px 0;
             border-bottom: 1px solid rgba(200, 180, 170, 0.2);
         }
 
@@ -72,15 +72,110 @@
             color: #b48a7a;
         }
 
+        /* === 名言轮播区（顶部独立区域） === */
+        .quotes-carousel {
+            background: rgba(255, 248, 245, 0.6);
+            backdrop-filter: blur(6px);
+            border-radius: 48px;
+            padding: 28px 32px;
+            margin: 24px 0 10px 0;
+            border: 1px solid rgba(255, 235, 225, 0.6);
+            box-shadow: 0 8px 28px rgba(160, 130, 110, 0.06);
+            position: relative;
+            overflow: hidden;
+            min-height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quotes-carousel::before {
+            content: "🌷 🌻 🌺 🌼 🌸";
+            position: absolute;
+            top: 6px;
+            right: 20px;
+            font-size: 16px;
+            letter-spacing: 8px;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+        .quotes-carousel::after {
+            content: "🌸 🌼 🌺 🌻 🌷";
+            position: absolute;
+            bottom: 6px;
+            left: 20px;
+            font-size: 16px;
+            letter-spacing: 8px;
+            opacity: 0.20;
+            pointer-events: none;
+        }
+
+        .quote-slide {
+            text-align: center;
+            padding: 0 20px;
+            animation: fadeScroll 18s infinite ease-in-out;
+            max-width: 900px;
+        }
+
+        /* 每条名言的字体风格不同——通过不同的 class 实现 */
+        .quote-slide .q1 { font-size: 22px; font-weight: 300; font-style: italic; letter-spacing: 2px; color: #6a4e3e; }
+        .quote-slide .q2 { font-size: 26px; font-weight: 400; letter-spacing: 3px; color: #8a6a5a; }
+        .quote-slide .q3 { font-size: 20px; font-weight: 300; font-style: normal; letter-spacing: 1px; color: #7a5a4a; }
+        .quote-slide .q4 { font-size: 24px; font-weight: 400; font-style: italic; letter-spacing: 2px; color: #a07a6a; }
+        .quote-slide .q5 { font-size: 21px; font-weight: 300; letter-spacing: 3px; color: #6a5a4e; }
+        .quote-slide .q6 { font-size: 25px; font-weight: 400; font-style: italic; letter-spacing: 1px; color: #8a6a5a; }
+
+        .quote-slide .source {
+            display: block;
+            font-size: 14px;
+            font-weight: 300;
+            color: #b09484;
+            margin-top: 6px;
+            letter-spacing: 2px;
+        }
+        .quote-slide .source::before { content: "—— "; }
+
+        /* 轮播淡入淡出 + 缓慢滚动效果 */
+        @keyframes fadeScroll {
+            0%   { opacity: 0; transform: translateY(12px); }
+            6%   { opacity: 1; transform: translateY(0); }
+            24%  { opacity: 1; transform: translateY(0); }
+            30%  { opacity: 0; transform: translateY(-12px); }
+            100% { opacity: 0; transform: translateY(-12px); }
+        }
+
+        /* 6条名言，每条占约16.6% 的时间 */
+        .quote-slide:nth-child(1) { animation-delay: 0s; }
+        .quote-slide:nth-child(2) { animation-delay: 3s; }
+        .quote-slide:nth-child(3) { animation-delay: 6s; }
+        .quote-slide:nth-child(4) { animation-delay: 9s; }
+        .quote-slide:nth-child(5) { animation-delay: 12s; }
+        .quote-slide:nth-child(6) { animation-delay: 15s; }
+
+        .quotes-wrapper {
+            position: relative;
+            width: 100%;
+            min-height: 100px;
+        }
+
+        .quote-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            padding: 10px 20px;
+            pointer-events: none;
+        }
+
         /* === 卡片网格 === */
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 28px;
-            margin-top: 35px;
+            margin-top: 30px;
         }
 
-        /* 公主风卡片 —— 柔光、圆润、花草点缀 */
         .card {
             background: rgba(255, 248, 245, 0.75);
             backdrop-filter: blur(3px);
@@ -93,7 +188,6 @@
             overflow: hidden;
         }
 
-        /* 花草装饰 —— 四个角落的小元素 */
         .card::before {
             content: "🌱";
             position: absolute;
@@ -115,25 +209,22 @@
             pointer-events: none;
         }
 
+        .card:nth-child(1)::before { content: "🌷"; }
+        .card:nth-child(1)::after { content: "🍃"; }
+        .card:nth-child(2)::before { content: "🌻"; }
+        .card:nth-child(2)::after { content: "🌿"; }
+        .card:nth-child(3)::before { content: "🌺"; }
+        .card:nth-child(3)::after { content: "🌾"; }
+        .card:nth-child(4)::before { content: "🌼"; }
+        .card:nth-child(4)::after { content: "🍀"; }
+        .card-wide::before { content: "🌿"; font-size: 34px; }
+        .card-wide::after { content: "🌸"; font-size: 28px; }
+
         .card:hover {
             transform: translateY(-6px);
             box-shadow: 0 18px 40px rgba(160, 130, 110, 0.12);
             background: rgba(255, 250, 248, 0.85);
         }
-
-        /* 不同卡片点缀不同花草 */
-        .card:nth-child(2)::before { content: "🌷"; }
-        .card:nth-child(2)::after { content: "🍃"; }
-        .card:nth-child(3)::before { content: "🌻"; }
-        .card:nth-child(3)::after { content: "🌿"; }
-        .card:nth-child(4)::before { content: "🌺"; }
-        .card:nth-child(4)::after { content: "🌾"; }
-        .card:nth-child(5)::before { content: "🌼"; }
-        .card:nth-child(5)::after { content: "🍀"; }
-        .card:nth-child(6)::before { content: "🌹"; }
-        .card:nth-child(6)::after { content: "🌱"; }
-        .card-wide::before { content: "🌿"; font-size: 34px; }
-        .card-wide::after { content: "🌸"; font-size: 28px; }
 
         .card-title {
             font-size: 22px;
@@ -157,32 +248,47 @@
             line-height: 1.9;
             font-size: 15px;
             color: #4f423a;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
-        /* 名言引用样式 —— 优雅、柔和 */
-        .quote-block {
-            background: rgba(255, 240, 235, 0.4);
-            border-left: 3px solid #e8cdc0;
-            padding: 14px 20px;
-            border-radius: 16px;
-            margin: 12px 0 8px 0;
-            font-style: italic;
-            color: #6a5548;
-            font-size: 14.5px;
-            line-height: 1.8;
+        .card-wide {
+            grid-column: 1 / -1;
         }
-        .quote-block .source {
-            display: block;
-            text-align: right;
-            font-style: normal;
-            font-size: 13px;
+
+        /* 照片占位（三张） */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .photo-placeholder {
+            background: linear-gradient(145deg, #f0e4da, #e6d6ca);
+            border-radius: 24px;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
             color: #b09484;
-            margin-top: 4px;
-            letter-spacing: 1px;
+            border: 2px dashed rgba(200, 170, 155, 0.4);
+            transition: 0.2s;
+            position: relative;
         }
-        .quote-block .source::before { content: "—— "; }
+        .photo-placeholder:hover {
+            border-color: #dbb8a8;
+            background: #f5e8e0;
+        }
+        .photo-placeholder span {
+            background: rgba(255, 248, 245, 0.6);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            color: #8a7a6a;
+        }
 
+        /* 标签 */
         .tag {
             display: inline-block;
             background: #f0e4da;
@@ -194,11 +300,22 @@
             margin-top: 6px;
         }
 
-        .card-wide {
-            grid-column: 1 / -1;
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
         }
 
-        /* 个人信息卡片 */
+        .chip {
+            background: #f5ebe4;
+            padding: 6px 22px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: #5a4a3e;
+            border: 1px solid rgba(255, 230, 220, 0.5);
+        }
+
         .profile {
             display: flex;
             align-items: center;
@@ -227,13 +344,11 @@
             letter-spacing: 4px;
             color: #5a4036;
         }
-
         .profile-info .sub {
             font-size: 15px;
             color: #9a8478;
             margin-top: 4px;
         }
-
         .profile-info .sub span {
             background: #f5e8e0;
             padding: 2px 16px;
@@ -242,33 +357,6 @@
             font-size: 13px;
         }
 
-        .chip-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 16px;
-        }
-
-        .chip {
-            background: #f5ebe4;
-            padding: 6px 22px;
-            border-radius: 50px;
-            font-size: 14px;
-            color: #5a4a3e;
-            border: 1px solid rgba(255, 230, 220, 0.5);
-        }
-
-        /* 花草装饰小分隔 */
-        .divider-flowers {
-            text-align: center;
-            font-size: 18px;
-            letter-spacing: 12px;
-            color: #dcc8bc;
-            opacity: 0.5;
-            margin: 8px 0 4px;
-        }
-
-        /* 底部 */
         .footer {
             margin-top: 60px;
             text-align: center;
@@ -281,7 +369,6 @@
         .footer::before { content: "🌷 "; }
         .footer::after { content: " 🌷"; }
 
-        /* 手机响应式 */
         @media (max-width: 680px) {
             .grid {
                 grid-template-columns: 1fr;
@@ -301,6 +388,20 @@
             .profile {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+            .photo-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .photo-grid .photo-placeholder:last-child {
+                grid-column: 1 / -1;
+            }
+            .quotes-carousel {
+                padding: 20px 16px;
+                min-height: 130px;
+            }
+            .quote-slide .q1, .quote-slide .q2, .quote-slide .q3,
+            .quote-slide .q4, .quote-slide .q5, .quote-slide .q6 {
+                font-size: 18px;
             }
         }
     </style>
@@ -323,10 +424,41 @@
         </div>
     </div>
 
-    <!-- 卡片网格 -->
+    <!-- === 顶部名言轮播区 === -->
+    <div class="quotes-carousel">
+        <div class="quotes-wrapper">
+            <!-- 每条名言使用不同的字体类，实现字体变化 -->
+            <div class="quote-slide">
+                <div class="q1">把忍受变为享受，是精神对于物质的最大胜利。</div>
+                <span class="source">马克思</span>
+            </div>
+            <div class="quote-slide">
+                <div class="q2">与其用华丽的外衣装饰自己，不如用知识武装自己。</div>
+                <span class="source">马克思</span>
+            </div>
+            <div class="quote-slide">
+                <div class="q3">后悔过去，不如奋斗将来。</div>
+                <span class="source">马克思</span>
+            </div>
+            <div class="quote-slide">
+                <div class="q4">生活就像海洋，只有意志坚强的人，才能到达彼岸。</div>
+                <span class="source">马克思</span>
+            </div>
+            <div class="quote-slide">
+                <div class="q5">世界会向那些有目标和远见的人让路。</div>
+                <span class="source">冯两努</span>
+            </div>
+            <div class="quote-slide">
+                <div class="q6">一个爱书的人，他必定不致缺少一个忠实的朋友。</div>
+                <span class="source">伊萨克·巴罗</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- === 卡片网格 === -->
     <div class="grid">
 
-        <!-- 跨列：个人信息卡片 -->
+        <!-- 个人信息卡片 -->
         <div class="card card-wide">
             <div class="profile">
                 <div class="avatar">🌸</div>
@@ -346,102 +478,86 @@
                 <span class="chip">🌿 美食</span>
                 <span class="chip">🌹 音乐</span>
             </div>
-            <div class="divider-flowers">🌷 · 🌻 · 🌺 · 🌼 · 🌸</div>
-            <div style="font-size: 14px; color: #7a6658; line-height: 1.8; margin-top: 6px;">
-                <span style="background: #f5ebe4; padding: 2px 14px; border-radius: 30px;">“把忍受变为享受，是精神对于物质的最大胜利。”</span>
-            </div>
         </div>
 
-        <!-- 卡片：学习记录 + 名言 -->
+        <!-- 学习记录 -->
         <div class="card">
             <div class="card-title">学习记录</div>
-            <div class="quote-block">
-                与其用华丽的外衣装饰自己，不如用知识武装自己。
-                <span class="source">马克思</span>
+            <p>📚 喜欢阅读的书籍类型：</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px;">
+                <span class="tag">💰 理财</span>
+                <span class="tag">🩺 医学专业</span>
+                <span class="tag">📜 哲学</span>
+                <span class="tag">📖 小说</span>
             </div>
-            <div class="quote-block">
-                越是多读书，就越是深刻地感到不满足，越感到自己知识贫乏。
-                <span class="source">马克思</span>
-            </div>
-            <div style="margin-top: 8px;">
-                <span class="tag">📖 阅读</span>
-                <span class="tag">🧠 思考</span>
-                <span class="tag">🌱 成长</span>
+            <div style="margin-top: 14px; background: rgba(255, 240, 235, 0.3); border-radius: 20px; padding: 12px 16px; border-left: 3px solid #dbb8a8;">
+                <p style="font-size: 14px; color: #6a5548; margin: 0;">
+                    <span style="font-style: italic;">“读书百遍，其义自见。”</span>
+                    <span style="display: block; font-size: 12px; color: #b09484; margin-top: 2px;">—— 《三国志》</span>
+                </p>
             </div>
         </div>
 
-        <!-- 卡片：生活瞬间 + 名言 -->
+        <!-- 生活瞬间 + 三张照片占位 -->
         <div class="card">
             <div class="card-title">生活瞬间</div>
-            <div class="quote-block">
-                生活就像海洋，只有意志坚强的人，才能到达彼岸。
-                <span class="source">马克思</span>
-            </div>
-            <div class="quote-block">
-                人生难得是青春，要学汤铭日日新。但嘱加鞭须趁早，莫抛岁月负双亲。
-                <span class="source">袁玉冰</span>
-            </div>
-            <div style="margin-top: 10px;">
-                <span class="tag">🌅 日落</span>
-                <span class="tag">🍃 日常</span>
-                <span class="tag">🌊 海洋</span>
-            </div>
-        </div>
-
-        <!-- 卡片：工作安排 + 名言 -->
-        <div class="card">
-            <div class="card-title">工作安排</div>
-            <div class="quote-block">
-                体力劳动是防止一切社会病毒的伟大的消毒剂。
-                <span class="source">马克思</span>
-            </div>
-            <div class="quote-block">
-                生产劳动和教育的早期结合是改造现代社会的最强有力的手段之一。
-                <span class="source">马克思</span>
+            <p style="font-size: 14px; color: #7a6658;">用镜头捕捉温暖的日常 🌸</p>
+            <div class="photo-grid">
+                <div class="photo-placeholder">🌷<span>照片1</span></div>
+                <div class="photo-placeholder">🌻<span>照片2</span></div>
+                <div class="photo-placeholder">🌺<span>照片3</span></div>
             </div>
             <div style="margin-top: 12px;">
-                <span class="tag">🎒 劳动</span>
-                <span class="tag">📚 实践</span>
+                <span class="tag">🌅 日落</span>
+                <span class="tag">🍃 日常</span>
+                <span class="tag">🌊 海边</span>
             </div>
         </div>
 
-        <!-- 卡片：规划人生 + 名言 -->
+        <!-- 工作安排 -->
+        <div class="card">
+            <div class="card-title">工作安排</div>
+            <p>🎯 当前提升目标：</p>
+            <ul style="padding-left: 20px; line-height: 2; color: #4f423a; font-size: 15px;">
+                <li>🤖 提升驾驭AI的能力</li>
+                <li>📊 学习 R 语言</li>
+                <li>⚙️ 学操作技术</li>
+            </ul>
+            <div style="margin-top: 12px;">
+                <span class="tag">🧠 学习</span>
+                <span class="tag">💻 技术</span>
+            </div>
+        </div>
+
+        <!-- 规划人生 -->
         <div class="card">
             <div class="card-title">规划人生</div>
-            <div class="quote-block">
-                后悔过去，不如奋斗将来。
-                <span class="source">马克思</span>
+            <p>🌟 梦想与方向：</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px;">
+                <span class="chip" style="background: #f5e8e0;">💰 财富自由</span>
+                <span class="chip" style="background: #f5e8e0;">🌹 健康貌美</span>
+                <span class="chip" style="background: #f5e8e0;">📚 终身学习</span>
+                <span class="chip" style="background: #f5e8e0;">🕊️ 独立自主</span>
             </div>
-            <div class="quote-block">
-                世界会向那些有目标和远见的人让路。
-                <span class="source">冯两努</span>
-            </div>
-            <div style="margin-top: 8px;">
-                <span class="tag">🗺️ 探索</span>
-                <span class="tag">⛰️ 攀登</span>
-                <span class="tag">🌟 远见</span>
+            <div style="margin-top: 14px; background: rgba(255, 240, 235, 0.3); border-radius: 20px; padding: 12px 16px; border-left: 3px solid #dbb8a8;">
+                <p style="font-size: 14px; color: #6a5548; margin: 0;">
+                    <span style="font-style: italic;">“世界会向那些有目标和远见的人让路。”</span>
+                    <span style="display: block; font-size: 12px; color: #b09484; margin-top: 2px;">—— 冯两努</span>
+                </p>
             </div>
         </div>
 
-        <!-- 卡片：学习打卡 + 名言（跨列） -->
+        <!-- 学习打卡（跨列） -->
         <div class="card card-wide">
             <div class="card-title">学习打卡 · 智慧点滴</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                <div class="quote-block" style="border-left-color: #dbb8a8;">
-                    读书百遍，其义自见。
-                    <span class="source">《三国志》</span>
+                <div style="background: rgba(255, 240, 235, 0.3); border-radius: 16px; padding: 12px 16px; border-left: 3px solid #dbb8a8;">
+                    <p style="font-size: 14px; color: #6a5548; font-style: italic;">敏于观察，勤于思考，善于综合，勇于创新。</p>
+                    <span style="font-size: 12px; color: #b09484;">—— 宋叔和</span>
                 </div>
-                <div class="quote-block" style="border-left-color: #dbb8a8;">
-                    一个爱书的人，他必定不致缺少一个忠实的朋友。
-                    <span class="source">伊萨克·巴罗</span>
-                </div>
-                <div class="quote-block" style="border-left-color: #dbb8a8;">
-                    笨鸟先飞早入林，笨人勤学早成材。
-                    <span class="source">《省世格言》</span>
-                </div>
-                <div class="quote-block" style="border-left-color: #dbb8a8;">
-                    敏于观察，勤于思考，善于综合，勇于创新。
-                    <span class="source">宋叔和</span>
+                <div style="background: rgba(255, 240, 235, 0.3); border-radius: 16px; padding: 12px 16px; border-left: 3px solid #dbb8a8;">
+                    <p style="font-size: 14px; color: #6a5548; font-style: italic;">笨鸟先飞早入林，笨人勤学早成材。</p>
+                    <span style="font-size: 12px; color: #b09484;">—— 《省世格言》</span>
                 </div>
             </div>
             <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px;">
@@ -453,14 +569,10 @@
             </div>
         </div>
 
-        <!-- 访客留言（跨列） + 花草寄语 -->
+        <!-- 访客留言 -->
         <div class="card card-wide" style="background: rgba(250, 240, 235, 0.5);">
             <div class="card-title">访客留言 · 花间寄语</div>
-            <div class="quote-block" style="border-left-color: #e8cdc0; background: rgba(255, 245, 240, 0.3);">
-                真诚的、十分理智的友谊是人生的无价之宝。
-                <span class="source">马克思</span>
-            </div>
-            <p style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 8px;">
+            <p style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
                 <span style="background: #f0e4da; padding: 8px 24px; border-radius: 60px; font-size: 14px;">💬 留下你的足迹</span>
                 <span style="color: #b09484; font-size: 14px;">—— 每一句话都是温暖的相遇 🌸</span>
             </p>
