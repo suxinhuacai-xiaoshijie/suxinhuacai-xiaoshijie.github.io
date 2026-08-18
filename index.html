@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>素心华彩 · 书与花的小世界</title>
+    <title>素心华彩 · 花与书的小世界</title>
     <style>
         /* === 全局 === */
         * {
@@ -116,56 +116,42 @@
             min-height: 130px;
         }
 
-        /* 每条名言独立定位，实现无重叠轮播 */
+        /* 每一条名言独立定位 */
         .quote-slide {
             position: absolute;
-            top: 0;
+            top: 50%;
             left: 0;
             width: 100%;
+            transform: translateY(-50%) translateX(0);
             padding: 10px 20px;
             text-align: center;
             opacity: 0;
-            transform: translateX(0);
             pointer-events: none;
-            animation: slideRightFade 120s infinite ease-in-out;
+            transition: none;
+            box-sizing: border-box;
         }
 
-        /* 每条名言延迟 6 秒 (20条 × 6秒 = 120秒) */
-        .quote-slide:nth-child(1) { animation-delay: 0s; }
-        .quote-slide:nth-child(2) { animation-delay: 6s; }
-        .quote-slide:nth-child(3) { animation-delay: 12s; }
-        .quote-slide:nth-child(4) { animation-delay: 18s; }
-        .quote-slide:nth-child(5) { animation-delay: 24s; }
-        .quote-slide:nth-child(6) { animation-delay: 30s; }
-        .quote-slide:nth-child(7) { animation-delay: 36s; }
-        .quote-slide:nth-child(8) { animation-delay: 42s; }
-        .quote-slide:nth-child(9) { animation-delay: 48s; }
-        .quote-slide:nth-child(10) { animation-delay: 54s; }
-        .quote-slide:nth-child(11) { animation-delay: 60s; }
-        .quote-slide:nth-child(12) { animation-delay: 66s; }
-        .quote-slide:nth-child(13) { animation-delay: 72s; }
-        .quote-slide:nth-child(14) { animation-delay: 78s; }
-        .quote-slide:nth-child(15) { animation-delay: 84s; }
-        .quote-slide:nth-child(16) { animation-delay: 90s; }
-        .quote-slide:nth-child(17) { animation-delay: 96s; }
-        .quote-slide:nth-child(18) { animation-delay: 102s; }
-        .quote-slide:nth-child(19) { animation-delay: 108s; }
-        .quote-slide:nth-child(20) { animation-delay: 114s; }
+        /* 当前显示的名言 */
+        .quote-slide.active {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: auto;
+        }
 
-        /* 关键帧：出现 → 停留 → 向右滑动消失 → 完全隐藏等待 */
-        @keyframes slideRightFade {
-            /* 0-5%: 从右侧进入（准备阶段，实际从中间出现） */
-            0%   { opacity: 0; transform: translateX(0); }
-            /* 5%-10%: 淡入出现在中间 */
-            5%   { opacity: 0; transform: translateX(0); }
-            10%  { opacity: 1; transform: translateX(0); }
-            /* 10%-75%: 稳定显示（约 6 秒中的中间 4 秒） */
-            75%  { opacity: 1; transform: translateX(0); }
-            /* 80%-90%: 向右滑动并淡出 */
-            80%  { opacity: 1; transform: translateX(0); }
-            90%  { opacity: 0; transform: translateX(40px); }
-            /* 90%-100%: 完全隐藏，等待下一轮 */
-            100% { opacity: 0; transform: translateX(40px); }
+        /* 退出动画：向右滑动并淡出 */
+        .quote-slide.exit {
+            opacity: 0;
+            transform: translateY(-50%) translateX(50px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
+        }
+
+        /* 等待进入的名言（预置在右侧外面） */
+        .quote-slide.waiting {
+            opacity: 0;
+            transform: translateY(-50%) translateX(30px);
+            pointer-events: none;
         }
 
         /* 字体风格：六种不同样式循环使用 */
@@ -433,29 +419,10 @@
         </div>
     </div>
 
-    <!-- === 顶部名言轮播区（20条，每条6秒，向右滑动消失） === -->
+    <!-- === 顶部名言轮播区 === -->
     <div class="quotes-carousel">
-        <div class="quotes-wrapper">
-            <div class="quote-slide"><div class="q1">把忍受变为享受，是精神对于物质的最大胜利。</div><span class="source">马克思</span></div>
-            <div class="quote-slide"><div class="q2">与其用华丽的外衣装饰自己，不如用知识武装自己。</div><span class="source">马克思</span></div>
-            <div class="quote-slide"><div class="q3">后悔过去，不如奋斗将来。</div><span class="source">马克思</span></div>
-            <div class="quote-slide"><div class="q4">生活就像海洋，只有意志坚强的人，才能到达彼岸。</div><span class="source">马克思</span></div>
-            <div class="quote-slide"><div class="q5">世界会向那些有目标和远见的人让路。</div><span class="source">冯两努</span></div>
-            <div class="quote-slide"><div class="q6">一个爱书的人，他必定不致缺少一个忠实的朋友。</div><span class="source">伊萨克·巴罗</span></div>
-            <div class="quote-slide"><div class="q1">书是我的奴隶，应该服从我的意志，供我使用。</div><span class="source">马克思</span></div>
-            <div class="quote-slide"><div class="q2">人的思维是否具有客观的真理性，这是一个实践的问题。</div><span class="source">马克思</span></div>
-            <div class="quote-slide"><div class="q3">最好是把真理比作燧石——它受到的敲打越厉害，发射出的光辉就越灿烂。</div><span class="source">马克思</span></div>
-            <div class="quote-slide"><div class="q4">人要学会走路，也要学会摔跤。而且只有经过摔跤，才能学会走路。</div><span class="source">马克思</span></div>
-            <div class="quote-slide"><div class="q5">没有目标，哪来的劲头。</div><span class="source">车尔尼雪夫斯基</span></div>
-            <div class="quote-slide"><div class="q6">读书百遍，其义自见。</div><span class="source">《三国志》</span></div>
-            <div class="quote-slide"><div class="q1">满招损，谦受益。</div><span class="source">《尚书·大禹谟》</span></div>
-            <div class="quote-slide"><div class="q2">敏于观察，勤于思考，善于综合，勇于创新。</div><span class="source">宋叔和</span></div>
-            <div class="quote-slide"><div class="q3">笨鸟先飞早入林，笨人勤学早成材。</div><span class="source">《省世格言》</span></div>
-            <div class="quote-slide"><div class="q4">读书是学习，摘抄是整理，写作是创造。</div><span class="source">吴晗</span></div>
-            <div class="quote-slide"><div class="q5">人生的意志和劳动将创造奇迹般的奇迹。</div><span class="source">涅克拉索夫</span></div>
-            <div class="quote-slide"><div class="q6">我爱书。我常常站在书架前，这时我觉得我面前展开了一个广阔的世界。</div><span class="source">刘白羽</span></div>
-            <div class="quote-slide"><div class="q1">学习如果想有成效，就必须专心。</div><span class="source">谷超豪</span></div>
-            <div class="quote-slide"><div class="q2">人生难得是青春，要学汤铭日日新。</div><span class="source">袁玉冰</span></div>
+        <div class="quotes-wrapper" id="quoteWrapper">
+            <!-- 所有名言由 JavaScript 动态生成 -->
         </div>
     </div>
 
@@ -590,6 +557,127 @@
     </div>
 
 </div>
+
+<script>
+    (function() {
+        // ===== 20条名言数据 =====
+        const quotes = [
+            { text: '把忍受变为享受，是精神对于物质的最大胜利。', source: '马克思' },
+            { text: '与其用华丽的外衣装饰自己，不如用知识武装自己。', source: '马克思' },
+            { text: '后悔过去，不如奋斗将来。', source: '马克思' },
+            { text: '生活就像海洋，只有意志坚强的人，才能到达彼岸。', source: '马克思' },
+            { text: '世界会向那些有目标和远见的人让路。', source: '冯两努' },
+            { text: '一个爱书的人，他必定不致缺少一个忠实的朋友。', source: '伊萨克·巴罗' },
+            { text: '书是我的奴隶，应该服从我的意志，供我使用。', source: '马克思' },
+            { text: '人的思维是否具有客观的真理性，这是一个实践的问题。', source: '马克思' },
+            { text: '最好是把真理比作燧石——它受到的敲打越厉害，发射出的光辉就越灿烂。', source: '马克思' },
+            { text: '人要学会走路，也要学会摔跤。而且只有经过摔跤，才能学会走路。', source: '马克思' },
+            { text: '没有目标，哪来的劲头。', source: '车尔尼雪夫斯基' },
+            { text: '读书百遍，其义自见。', source: '《三国志》' },
+            { text: '满招损，谦受益。', source: '《尚书·大禹谟》' },
+            { text: '敏于观察，勤于思考，善于综合，勇于创新。', source: '宋叔和' },
+            { text: '笨鸟先飞早入林，笨人勤学早成材。', source: '《省世格言》' },
+            { text: '读书是学习，摘抄是整理，写作是创造。', source: '吴晗' },
+            { text: '人生的意志和劳动将创造奇迹般的奇迹。', source: '涅克拉索夫' },
+            { text: '我爱书。我常常站在书架前，这时我觉得我面前展开了一个广阔的世界。', source: '刘白羽' },
+            { text: '学习如果想有成效，就必须专心。', source: '谷超豪' },
+            { text: '人生难得是青春，要学汤铭日日新。', source: '袁玉冰' }
+        ];
+
+        // 字体样式循环
+        const styleClasses = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6'];
+
+        const wrapper = document.getElementById('quoteWrapper');
+        let currentIndex = 0;
+        let timer = null;
+
+        // 创建所有名言元素
+        quotes.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'quote-slide waiting';
+            const styleClass = styleClasses[index % styleClasses.length];
+            div.innerHTML = `
+                <div class="${styleClass}">${item.text}</div>
+                <span class="source">${item.source}</span>
+            `;
+            wrapper.appendChild(div);
+        });
+
+        const slides = wrapper.querySelectorAll('.quote-slide');
+        const total = slides.length;
+
+        // 显示指定索引的名言
+        function showQuote(index) {
+            // 清除所有状态
+            slides.forEach(slide => {
+                slide.classList.remove('active', 'exit', 'waiting');
+            });
+
+            // 当前显示的名言：active
+            slides[index].classList.add('active');
+        }
+
+        // 切换到下一条（当前条先退出，再显示下一条）
+        function nextQuote() {
+            const current = slides[currentIndex];
+            const nextIndex = (currentIndex + 1) % total;
+            const next = slides[nextIndex];
+
+            // 1. 当前条执行退出动画（向右滑动淡出）
+            current.classList.remove('active');
+            current.classList.add('exit');
+
+            // 2. 下一条预先放在右侧外面（等待进入）
+            next.classList.remove('waiting');
+            next.classList.add('active');
+            // 但先让它透明且偏右，准备进入
+            next.style.opacity = '0';
+            next.style.transform = 'translateY(-50%) translateX(30px)';
+            next.style.transition = 'none';
+
+            // 强制回流后，再触发进入动画
+            void next.offsetWidth;
+
+            // 3. 下一条进入（从右侧滑入中间）
+            next.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            next.style.opacity = '1';
+            next.style.transform = 'translateY(-50%) translateX(0)';
+
+            // 4. 更新当前索引
+            currentIndex = nextIndex;
+
+            // 5. 清除当前条的退出状态（为下一轮做准备）
+            setTimeout(() => {
+                current.classList.remove('exit');
+                current.style.opacity = '0';
+                current.style.transform = 'translateY(-50%) translateX(0)';
+                current.style.transition = 'none';
+            }, 500);
+        }
+
+        // 启动轮播
+        function startCarousel() {
+            // 初始化：显示第一条
+            showQuote(0);
+            currentIndex = 0;
+
+            // 每4.5秒切换一次（4秒显示 + 0.5秒过渡）
+            timer = setInterval(nextQuote, 4500);
+        }
+
+        // 启动
+        startCarousel();
+
+        // 页面可见性变化时暂停/恢复（优化性能）
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                clearInterval(timer);
+            } else {
+                timer = setInterval(nextQuote, 4500);
+            }
+        });
+    })();
+</script>
 
 </body>
 </html>
