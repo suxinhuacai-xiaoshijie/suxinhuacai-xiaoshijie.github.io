@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>素心华彩的小世界</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <nav class="navbar">
+        <div class="nav-brand">☀️ 素心华彩的小世界</div>
+        <div class="nav-links">
+            <a href="#home" class="active">首页</a>
+            <a href="#photos">美照集</a>
+            <a href="#articles">文章</a>
+            <a href="#texts">文字作品</a>
+            <a href="#videos">视频</a>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="sun-icon">☀️</div>
+            <h1>欢迎来到我的小世界</h1>
+            <p class="hero-subtitle">用文字记录心情，用镜头捕捉美好，每一刻都值得被珍藏</p>
+            <div class="hero-decoration">
+                <span class="float-item">🌻</span>
+                <span class="float-item">🌿</span>
+                <span class="float-item">✨</span>
+                <span class="float-item">🦋</span>
+                <span class="float-item">🌸</span>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>向下滑动，探索更多</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title"><span>关于我</span></h2>
+            <div class="about-card">
+                <div class="about-avatar">🌻</div>
+                <p class="about-text">你好呀，我是素心华彩 ☀️<br>这里是属于我的小天地，存放着我一路走来的作品和回忆。<br>有随手拍下的风景，有深夜写下的文字，有精心制作的视频。<br>每一件都是我对生活的热爱，希望你能在这里感受到温暖。</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="12">0</span>
+                        <span class="stat-label">美照</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="8">0</span>
+                        <span class="stat-label">文章</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="5">0</span>
+                        <span class="stat-label">文字作品</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="3">0</span>
+                        <span class="stat-label">视频</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美照集 -->
+    <section id="photos" class="section">
+        <div class="container">
+            <h2 class="section-title"><span>📷 美照集</span></h2>
+            <p class="section-desc">用镜头记录每一个温暖的瞬间</p>
+            
+            <!-- 分类筛选 -->
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="风景">风景</button>
+                <button class="filter-btn" data-filter="生活">生活</button>
+                <button class="filter-btn" data-filter="旅行">旅行</button>
+            </div>
+
+            <div class="photo-grid">
+                <div class="photo-card" data-category="风景">
+                    <div class="photo-placeholder">
+                        <span>🌅</span>
+                        <p>日落黄昏</p>
+                    </div>
+                    <div class="photo-info">
+                        <h3>日落黄昏</h3>
+                        <p>那天傍晚，天边的晚霞像打翻的调色盘</p>
+                        <span class="photo-date">2026.08.15</span>
+                    </div>
+                </div>
+                <div class="photo-card" data-category="生活">
+                    <div class="photo-placeholder">
+                        <span>☕</span>
+                        <p>午后时光</p>
+                    </div>
+                    <div class="photo-info">
+                        <h3>午后时光</h3>
+                        <p>一杯咖啡，一本书，一个安静的下午</p>
+                        <span class="photo-date">2026.08.10</span>
+                    </div>
+                </div>
+                <div class="photo-card" data-category="旅行">
+                    <div class="photo-placeholder">
+                        <span>🏔️</span>
+                        <p>山间云雾</p>
+                    </div>
+                    <div class="photo-info">
+                        <h3>山间云雾</h3>
+                        <p>山顶的风，吹走了所有的烦恼</p>
+                        <span class="photo-date">2026.07.28</span>
+                    </div>
+                </div>
+                <div class="photo-card" data-category="风景">
+                    <div class="photo-placeholder">
+                        <span>🌸</span>
+                        <p>春日花开</p>
+                    </div>
+                    <div class="photo-info">
+                        <h3>春日花开</h3>
+                        <p>路过一棵开满花的树，忍不住停下来</p>
+                        <span class="photo-date">2026.03.20</span>
+                    </div>
+                </div>
+                <div class="photo-card" data-category="生活">
+                    <div class="photo-placeholder">
+                        <span>🐱</span>
+                        <p>遇见小猫</p>
+                    </div>
+                    <div class="photo-info">
+                        <h3>遇见小猫</h3>
+                        <p>路边的猫猫，治愈了一整天</p>
+                        <span class="photo-date">2026.06.05</span>
+                    </div>
+                </div>
+                <div class="photo-card" data-category="旅行">
+                    <div class="photo-placeholder">
+                        <span>🌊</span>
+                        <p>海边日落</p>
+                    </div>
+                    <div class="photo-info">
+                        <h3>海边日落</h3>
+                        <p>听着海浪声，看太阳慢慢沉入海面</p>
+                        <span class="photo-date">2026.05.12</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 文章 -->
+    <section id="articles" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title"><span>✍️ 文章</span></h2>
+            <p class="section-desc">用文字留下思考和感悟</p>
+            
+            <div class="article-list">
+                <article class="article-card">
+                    <div class="article-tag">随笔</div>
+                    <h3>那些微小但确定的幸福</h3>
+                    <p>生活中有很多小小的幸福，比如清晨的第一缕阳光，比如陌生人善意的微笑，比如读到一本好书时的感动。这些微小的瞬间，串起来就是生活最美好的模样……</p>
+                    <div class="article-meta">
+                        <span>📅 2026-08-15</span>
+                        <span>·</span>
+                        <span>☕ 5分钟阅读</span>
+                    </div>
+                    <a href="#" class="read-more">阅读全文 →</a>
+                </article>
+                <article class="article-card">
+                    <div class="article-tag">旅行</div>
+                    <h3>一个人的旅行日记</h3>
+                    <p>背上行囊，一个人出发。不是孤独，而是和自己相处的好机会。在陌生的城市里迷路，却意外发现了一家很棒的咖啡店……</p>
+                    <div class="article-meta">
+                        <span>📅 2026-07-28</span>
+                        <span>·</span>
+                        <span>☕ 8分钟阅读</span>
+                    </div>
+                    <a href="#" class="read-more">阅读全文 →</a>
+                </article>
+                <article class="article-card">
+                    <div class="article-tag">读书</div>
+                    <h3>最近读的一本书</h3>
+                    <p>这本书让我重新思考了很多事情。有些道理，道理你都懂，但只有读到那个文字的瞬间，才会真正被打动……</p>
+                    <div class="article-meta">
+                        <span>📅 2026-06-20</span>
+                        <span>·</span>
+                        <span>☕ 4分钟阅读</span>
+                    </div>
+                    <a href="#" class="read-more">阅读全文 →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 文字作品 -->
+    <section id="texts" class="section">
+        <div class="container">
+            <h2 class="section-title"><span>📝 文字作品</span></h2>
+            <p class="section-desc">诗歌、散文、故事，都是心灵的碎片</p>
+            
+            <div class="text-works">
+                <div class="text-card">
+                    <div class="text-card-header">
+                        <span class="text-type">诗歌</span>
+                        <h3>《夏天的风》</h3>
+                    </div>
+                    <div class="text-preview">
+                        <p>夏天的风吹过树梢<br>
+                        带来了远方的消息<br>
+                        那些被阳光晒过的日子<br>
+                        都变成了金色的回忆<br>
+                        ……</p>
+                    </div>
+                    <span class="text-date">2026.08.10</span>
+                </div>
+                <div class="text-card">
+                    <div class="text-card-header">
+                        <span class="text-type">散文</span>
+                        <h3>《清晨的光》</h3>
+                    </div>
+                    <div class="text-preview">
+                        <p>每天清晨，当第一缕光穿过窗帘洒进来，我就知道，又是崭新的一天。生活不需要多么轰轰烈烈，平平淡淡中的温暖，才是最真实的幸福……</p>
+                    </div>
+                    <span class="text-date">2026.07.15</span>
+                </div>
+                <div class="text-card">
+                    <div class="text-card-header">
+                        <span class="text-type">短文</span>
+                        <h3>《给未来的自己》</h3>
+                    </div>
+                    <div class="text-preview">
+                        <p>亲爱的未来的自己：<br>
+                        不知道你现在在哪里，过着怎样的生活。但希望你依然保持着对生活的热爱，依然在每天清晨醒来时，觉得这个世界值得期待……</p>
+                    </div>
+                    <span class="text-date">2026.06.01</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 视频 -->
+    <section id="videos" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title"><span>🎬 视频作品</span></h2>
+            <p class="section-desc">用影像讲述故事</p>
+            
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-cover">
+                        <div class="play-btn">▶</div>
+                        <span class="video-duration">03:24</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>城市慢生活 Vlog</h3>
+                        <p>用一个下午的时间，慢悠悠地逛了这座城市</p>
+                        <span class="video-date">2026.08.05</span>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-cover">
+                        <div class="play-btn">▶</div>
+                        <span class="video-duration">05:12</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>旅行记录 | 海边的一天</h3>
+                        <p>海浪、沙滩、日落，所有美好的元素都在这里了</p>
+                        <span class="video-date">2026.05.15</span>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-cover">
+                        <div class="play-btn">▶</div>
+                        <span class="video-duration">02:48</span>
+                    </div>
+                    <div class="video-info">
+                        <h3>日常碎片合集</h3>
+                        <p>生活中那些容易被忽略的小美好</p>
+                        <span class="video-date">2026.04.20</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 留言板 -->
+    <section class="guestbook-section">
+        <div class="container">
+            <h2 class="section-title"><span>💌 留言板</span></h2>
+            <p class="section-desc">有什么想对我说的话，留在这里吧</p>
+            <div class="guestbook-wall">
+                <div class="sticky-note note-yellow">
+                    <p>这里好温馨呀！很喜欢你的小世界~ ☀️</p>
+                    <span>— 一位路过的小伙伴</span>
+                </div>
+                <div class="sticky-note note-pink">
+                    <p>照片拍得真好看！那張日落也太美了吧 🌅</p>
+                    <span>— 远方的朋友</span>
+                </div>
+                <div class="sticky-note note-green">
+                    <p>文字很有感染力，继续写下去呀！💪</p>
+                    <span>— 爱读书的猫</span>
+                </div>
+                <div class="sticky-note note-blue">
+                    <p>看完你的文章感觉很治愈，谢谢分享 ❤️</p>
+                    <span>— 温暖的陌生人</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-brand">☀️ 素心华彩的小世界</p>
+            <p class="footer-quote">"生活明朗，万物可爱"</p>
+            <p class="footer-copy">© 2026 素心华彩 · 用心记录每一天</p>
+        </div>
+    </footer>
+
+    <!-- 回到顶部 -->
+    <button class="back-to-top" id="backToTop" title="回到顶部">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
