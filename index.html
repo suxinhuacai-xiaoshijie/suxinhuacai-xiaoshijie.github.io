@@ -1,330 +1,316 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>素心华彩的小世界</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>温暖 · 清新 · 高级</title>
+  <style>
+    /* 全局重置 & 字体 — 圆润现代 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fcf8f2;  /* 奶油白基底 */
+      font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      color: #3e3a36;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1.5rem;
+    }
+
+    /* 柔和渐变背景 — 从奶油到淡橘粉 */
+    .page-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(145deg, #fdf6ed 0%, #fce9e0 70%, #f8ddd2 100%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ------- 顶部：头像 + 名字 + 手写签名 ------- */
+    .hero {
+      text-align: center;
+      margin-top: 0.8rem;
+      margin-bottom: 3.2rem;
+      padding: 0 0.5rem;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #d9d2c5;  /* 高级灰圆占位 */
+      margin: 0 auto 1.6rem;
+      box-shadow: 0 16px 40px -12px rgba(160, 130, 110, 0.25);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar:hover {
+      transform: scale(1.02);
+      box-shadow: 0 24px 48px -14px rgba(150, 120, 100, 0.3);
+    }
+
+    .avatar svg {
+      width: 68px;
+      height: 68px;
+      fill: #e4ded5;
+      opacity: 0.6;
+    }
+
+    .hero h1 {
+      font-size: 3.4rem;
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      color: #3c3530;
+      margin-bottom: 0.1rem;
+      font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+    }
+
+    .hero .signature {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #b28b7a;
+      font-style: italic;
+      letter-spacing: 2px;
+      font-family: 'Georgia', 'Times New Roman', 'Segoe UI', serif;
+      background: rgba(245, 225, 215, 0.3);
+      display: inline-block;
+      padding: 0.1rem 1.8rem;
+      border-radius: 60px;
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(235, 205, 190, 0.2);
+      margin-top: 0.2rem;
+    }
+
+    /* ------- 毛玻璃卡片区 ------- */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 2.8rem;
+    }
+
+    .glass-card {
+      background: rgba(255, 248, 242, 0.55);
+      backdrop-filter: blur(12px) saturate(150%);
+      -webkit-backdrop-filter: blur(12px) saturate(150%);
+      border-radius: 48px;
+      padding: 2.2rem 2.5rem;
+      box-shadow: 0 12px 40px -12px rgba(160, 130, 115, 0.18), 
+                  0 2px 8px rgba(255, 245, 235, 0.3);
+      border: 1px solid rgba(255, 240, 230, 0.5);
+      transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.4s;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 245, 235, 0.5);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 56px -18px rgba(150, 115, 95, 0.25), 
+                  0 4px 12px rgba(255, 225, 210, 0.2);
+      background: rgba(255, 248, 242, 0.7);
+      border-color: rgba(255, 225, 210, 0.5);
+    }
+
+    .glass-card h2 {
+      font-size: 1.9rem;
+      font-weight: 450;
+      color: #4d3f38;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid rgba(225, 190, 175, 0.25);
+      padding-bottom: 0.4rem;
+      display: inline-block;
+    }
+
+    .glass-card p, .glass-card li {
+      font-size: 1.1rem;
+      font-weight: 350;
+      color: #4d423c;
+      line-height: 1.7;
+    }
+
+    .glass-card ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 0.4rem;
+    }
+
+    .glass-card ul li {
+      padding: 0.2rem 0 0.2rem 1.2rem;
+      position: relative;
+    }
+
+    .glass-card ul li::before {
+      content: "•";
+      color: #dbb8a5;
+      font-weight: 400;
+      position: absolute;
+      left: 0;
+      font-size: 1.4rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem 2.2rem;
+      margin-top: 0.4rem;
+    }
+
+    .contact-links a {
+      color: #7a6256;
+      text-decoration: none;
+      font-weight: 400;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+      font-size: 1.1rem;
+    }
+
+    .contact-links a:hover {
+      color: #c28d74;
+      border-bottom-color: #e3c0ae;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 2.8rem; }
+      .hero .signature { font-size: 1.2rem; padding: 0.1rem 1.2rem; }
+      .glass-card { padding: 1.8rem 1.5rem; border-radius: 36px; }
+    }
+
+    @media (max-width: 500px) {
+      .hero h1 { font-size: 2.2rem; }
+      .avatar { width: 115px; height: 115px; }
+      .avatar svg { width: 56px; height: 56px; }
+      .glass-card { padding: 1.5rem 1.2rem; }
+      .glass-card h2 { font-size: 1.6rem; }
+    }
+
+    /* 小点缀：底部留白 */
+    .footer-note {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      color: #bfaea1;
+      letter-spacing: 0.5px;
+      font-weight: 300;
+      border-top: 1px solid rgba(210, 185, 170, 0.15);
+      padding-top: 1.8rem;
+      width: 100%;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    /* 背景装饰小点 (可选) */
+    .bg-blur-circle {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .bg-blur-circle.c1 {
+      width: 400px;
+      height: 400px;
+      background: #f5d6c4;
+      top: -100px;
+      right: -100px;
+    }
+
+    .bg-blur-circle.c2 {
+      width: 350px;
+      height: 350px;
+      background: #fadccc;
+      bottom: 0;
+      left: -80px;
+    }
+  </style>
 </head>
 <body>
-    <!-- 顶部导航 -->
-    <nav class="navbar">
-        <div class="nav-brand">☀️ 素心华彩的小世界</div>
-        <div class="nav-links">
-            <a href="#home" class="active">首页</a>
-            <a href="#photos">美照集</a>
-            <a href="#articles">文章</a>
-            <a href="#texts">文字作品</a>
-            <a href="#videos">视频</a>
+  <!-- 柔和渐变背景 + 装饰光晕 -->
+  <div class="page-bg"></div>
+  <div class="bg-blur-circle c1"></div>
+  <div class="bg-blur-circle c2"></div>
+
+  <div class="container">
+    <!-- 顶部头像 + 名字 + 手写签名 -->
+    <div class="hero">
+      <div class="avatar" aria-label="头像占位（灰色圆形）">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="40" r="20" fill="#ece4db" />
+          <circle cx="50" cy="78" r="26" fill="#ece4db" />
+          <path d="M24 74 Q50 94 76 74 Q64 58 50 60 Q36 58 24 74" fill="#ece4db" />
+          <circle cx="43" cy="37" r="4.5" fill="#d3c8bc" />
+          <circle cx="57" cy="37" r="4.5" fill="#d3c8bc" />
+        </svg>
+      </div>
+      <h1>陈 一 宁</h1>
+      <div class="signature">— yining · design —</div>
+    </div>
+
+    <!-- 毛玻璃卡片：三个板块 -->
+    <div class="cards">
+      <!-- 关于我 -->
+      <div class="glass-card">
+        <h2>关于我</h2>
+        <p>自由设计师，生活在北京与上海之间。热爱将自然的温度融入视觉语言，相信好的设计应该像清晨的阳光——柔和、真诚、留有呼吸感。  </p>
+        <p style="margin-top: 0.6rem; font-size: 1rem; color: #7d6a5d;">✨ 保持好奇，保持温柔。</p>
+      </div>
+
+      <!-- 我的作品 -->
+      <div class="glass-card">
+        <h2>我的作品</h2>
+        <ul>
+          <li>「 林间  」 品牌形象 · 自然调性</li>
+          <li>「 慢食  」 包装设计 · 手作温度</li>
+          <li>「 日光  」 家居系列 · 极简诗意</li>
+          <li>「 写意  」 数字插画 · 东方留白</li>
+        </ul>
+        <p style="margin-top: 0.8rem; font-size: 0.95rem; color: #9d8779;">* 更多作品可移步 Behance 或联系获取</p>
+      </div>
+
+      <!-- 联系我 -->
+      <div class="glass-card">
+        <h2>联系我</h2>
+        <div class="contact-links">
+          <a href="#">📧  yining.design@mail.com</a>
+          <a href="#">📱  wechat · yining_studio</a>
+          <a href="#">📷  Instagram · @yining.design</a>
+          <a href="#">📌  Behance · yining portfolio</a>
         </div>
-    </nav>
+        <p style="margin-top: 0.8rem; font-size: 0.95rem; color: #a48d7d;">—— 合作或闲聊，都欢迎。</p>
+      </div>
+    </div>
 
-    <!-- 英雄区域 -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="sun-icon">☀️</div>
-            <h1>欢迎来到我的小世界</h1>
-            <p class="hero-subtitle">用文字记录心情，用镜头捕捉美好，每一刻都值得被珍藏</p>
-            <div class="hero-decoration">
-                <span class="float-item">🌻</span>
-                <span class="float-item">🌿</span>
-                <span class="float-item">✨</span>
-                <span class="float-item">🦋</span>
-                <span class="float-item">🌸</span>
-            </div>
-        </div>
-        <div class="scroll-hint">
-            <span>向下滑动，探索更多</span>
-            <div class="scroll-arrow">↓</div>
-        </div>
-    </section>
-
-    <!-- 关于我 -->
-    <section class="about-section">
-        <div class="container">
-            <h2 class="section-title"><span>关于我</span></h2>
-            <div class="about-card">
-                <div class="about-avatar">🌻</div>
-                <p class="about-text">你好呀，我是素心华彩 ☀️<br>这里是属于我的小天地，存放着我一路走来的作品和回忆。<br>有随手拍下的风景，有深夜写下的文字，有精心制作的视频。<br>每一件都是我对生活的热爱，希望你能在这里感受到温暖。</p>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="12">0</span>
-                        <span class="stat-label">美照</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="8">0</span>
-                        <span class="stat-label">文章</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="5">0</span>
-                        <span class="stat-label">文字作品</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="3">0</span>
-                        <span class="stat-label">视频</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 美照集 -->
-    <section id="photos" class="section">
-        <div class="container">
-            <h2 class="section-title"><span>📷 美照集</span></h2>
-            <p class="section-desc">用镜头记录每一个温暖的瞬间</p>
-            
-            <!-- 分类筛选 -->
-            <div class="filter-bar">
-                <button class="filter-btn active" data-filter="all">全部</button>
-                <button class="filter-btn" data-filter="风景">风景</button>
-                <button class="filter-btn" data-filter="生活">生活</button>
-                <button class="filter-btn" data-filter="旅行">旅行</button>
-            </div>
-
-            <div class="photo-grid">
-                <div class="photo-card" data-category="风景">
-                    <div class="photo-placeholder">
-                        <span>🌅</span>
-                        <p>日落黄昏</p>
-                    </div>
-                    <div class="photo-info">
-                        <h3>日落黄昏</h3>
-                        <p>那天傍晚，天边的晚霞像打翻的调色盘</p>
-                        <span class="photo-date">2026.08.15</span>
-                    </div>
-                </div>
-                <div class="photo-card" data-category="生活">
-                    <div class="photo-placeholder">
-                        <span>☕</span>
-                        <p>午后时光</p>
-                    </div>
-                    <div class="photo-info">
-                        <h3>午后时光</h3>
-                        <p>一杯咖啡，一本书，一个安静的下午</p>
-                        <span class="photo-date">2026.08.10</span>
-                    </div>
-                </div>
-                <div class="photo-card" data-category="旅行">
-                    <div class="photo-placeholder">
-                        <span>🏔️</span>
-                        <p>山间云雾</p>
-                    </div>
-                    <div class="photo-info">
-                        <h3>山间云雾</h3>
-                        <p>山顶的风，吹走了所有的烦恼</p>
-                        <span class="photo-date">2026.07.28</span>
-                    </div>
-                </div>
-                <div class="photo-card" data-category="风景">
-                    <div class="photo-placeholder">
-                        <span>🌸</span>
-                        <p>春日花开</p>
-                    </div>
-                    <div class="photo-info">
-                        <h3>春日花开</h3>
-                        <p>路过一棵开满花的树，忍不住停下来</p>
-                        <span class="photo-date">2026.03.20</span>
-                    </div>
-                </div>
-                <div class="photo-card" data-category="生活">
-                    <div class="photo-placeholder">
-                        <span>🐱</span>
-                        <p>遇见小猫</p>
-                    </div>
-                    <div class="photo-info">
-                        <h3>遇见小猫</h3>
-                        <p>路边的猫猫，治愈了一整天</p>
-                        <span class="photo-date">2026.06.05</span>
-                    </div>
-                </div>
-                <div class="photo-card" data-category="旅行">
-                    <div class="photo-placeholder">
-                        <span>🌊</span>
-                        <p>海边日落</p>
-                    </div>
-                    <div class="photo-info">
-                        <h3>海边日落</h3>
-                        <p>听着海浪声，看太阳慢慢沉入海面</p>
-                        <span class="photo-date">2026.05.12</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 文章 -->
-    <section id="articles" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title"><span>✍️ 文章</span></h2>
-            <p class="section-desc">用文字留下思考和感悟</p>
-            
-            <div class="article-list">
-                <article class="article-card">
-                    <div class="article-tag">随笔</div>
-                    <h3>那些微小但确定的幸福</h3>
-                    <p>生活中有很多小小的幸福，比如清晨的第一缕阳光，比如陌生人善意的微笑，比如读到一本好书时的感动。这些微小的瞬间，串起来就是生活最美好的模样……</p>
-                    <div class="article-meta">
-                        <span>📅 2026-08-15</span>
-                        <span>·</span>
-                        <span>☕ 5分钟阅读</span>
-                    </div>
-                    <a href="#" class="read-more">阅读全文 →</a>
-                </article>
-                <article class="article-card">
-                    <div class="article-tag">旅行</div>
-                    <h3>一个人的旅行日记</h3>
-                    <p>背上行囊，一个人出发。不是孤独，而是和自己相处的好机会。在陌生的城市里迷路，却意外发现了一家很棒的咖啡店……</p>
-                    <div class="article-meta">
-                        <span>📅 2026-07-28</span>
-                        <span>·</span>
-                        <span>☕ 8分钟阅读</span>
-                    </div>
-                    <a href="#" class="read-more">阅读全文 →</a>
-                </article>
-                <article class="article-card">
-                    <div class="article-tag">读书</div>
-                    <h3>最近读的一本书</h3>
-                    <p>这本书让我重新思考了很多事情。有些道理，道理你都懂，但只有读到那个文字的瞬间，才会真正被打动……</p>
-                    <div class="article-meta">
-                        <span>📅 2026-06-20</span>
-                        <span>·</span>
-                        <span>☕ 4分钟阅读</span>
-                    </div>
-                    <a href="#" class="read-more">阅读全文 →</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- 文字作品 -->
-    <section id="texts" class="section">
-        <div class="container">
-            <h2 class="section-title"><span>📝 文字作品</span></h2>
-            <p class="section-desc">诗歌、散文、故事，都是心灵的碎片</p>
-            
-            <div class="text-works">
-                <div class="text-card">
-                    <div class="text-card-header">
-                        <span class="text-type">诗歌</span>
-                        <h3>《夏天的风》</h3>
-                    </div>
-                    <div class="text-preview">
-                        <p>夏天的风吹过树梢<br>
-                        带来了远方的消息<br>
-                        那些被阳光晒过的日子<br>
-                        都变成了金色的回忆<br>
-                        ……</p>
-                    </div>
-                    <span class="text-date">2026.08.10</span>
-                </div>
-                <div class="text-card">
-                    <div class="text-card-header">
-                        <span class="text-type">散文</span>
-                        <h3>《清晨的光》</h3>
-                    </div>
-                    <div class="text-preview">
-                        <p>每天清晨，当第一缕光穿过窗帘洒进来，我就知道，又是崭新的一天。生活不需要多么轰轰烈烈，平平淡淡中的温暖，才是最真实的幸福……</p>
-                    </div>
-                    <span class="text-date">2026.07.15</span>
-                </div>
-                <div class="text-card">
-                    <div class="text-card-header">
-                        <span class="text-type">短文</span>
-                        <h3>《给未来的自己》</h3>
-                    </div>
-                    <div class="text-preview">
-                        <p>亲爱的未来的自己：<br>
-                        不知道你现在在哪里，过着怎样的生活。但希望你依然保持着对生活的热爱，依然在每天清晨醒来时，觉得这个世界值得期待……</p>
-                    </div>
-                    <span class="text-date">2026.06.01</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 视频 -->
-    <section id="videos" class="section section-alt">
-        <div class="container">
-            <h2 class="section-title"><span>🎬 视频作品</span></h2>
-            <p class="section-desc">用影像讲述故事</p>
-            
-            <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-cover">
-                        <div class="play-btn">▶</div>
-                        <span class="video-duration">03:24</span>
-                    </div>
-                    <div class="video-info">
-                        <h3>城市慢生活 Vlog</h3>
-                        <p>用一个下午的时间，慢悠悠地逛了这座城市</p>
-                        <span class="video-date">2026.08.05</span>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-cover">
-                        <div class="play-btn">▶</div>
-                        <span class="video-duration">05:12</span>
-                    </div>
-                    <div class="video-info">
-                        <h3>旅行记录 | 海边的一天</h3>
-                        <p>海浪、沙滩、日落，所有美好的元素都在这里了</p>
-                        <span class="video-date">2026.05.15</span>
-                    </div>
-                </div>
-                <div class="video-card">
-                    <div class="video-cover">
-                        <div class="play-btn">▶</div>
-                        <span class="video-duration">02:48</span>
-                    </div>
-                    <div class="video-info">
-                        <h3>日常碎片合集</h3>
-                        <p>生活中那些容易被忽略的小美好</p>
-                        <span class="video-date">2026.04.20</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 留言板 -->
-    <section class="guestbook-section">
-        <div class="container">
-            <h2 class="section-title"><span>💌 留言板</span></h2>
-            <p class="section-desc">有什么想对我说的话，留在这里吧</p>
-            <div class="guestbook-wall">
-                <div class="sticky-note note-yellow">
-                    <p>这里好温馨呀！很喜欢你的小世界~ ☀️</p>
-                    <span>— 一位路过的小伙伴</span>
-                </div>
-                <div class="sticky-note note-pink">
-                    <p>照片拍得真好看！那張日落也太美了吧 🌅</p>
-                    <span>— 远方的朋友</span>
-                </div>
-                <div class="sticky-note note-green">
-                    <p>文字很有感染力，继续写下去呀！💪</p>
-                    <span>— 爱读书的猫</span>
-                </div>
-                <div class="sticky-note note-blue">
-                    <p>看完你的文章感觉很治愈，谢谢分享 ❤️</p>
-                    <span>— 温暖的陌生人</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p class="footer-brand">☀️ 素心华彩的小世界</p>
-            <p class="footer-quote">"生活明朗，万物可爱"</p>
-            <p class="footer-copy">© 2026 素心华彩 · 用心记录每一天</p>
-        </div>
-    </footer>
-
-    <!-- 回到顶部 -->
-    <button class="back-to-top" id="backToTop" title="回到顶部">↑</button>
-
-    <script src="script.js"></script>
+    <!-- 底部留白 -->
+    <div class="footer-note">
+      © 2026 陈一宁 · 温暖高级感
+    </div>
+  </div>
 </body>
 </html>
