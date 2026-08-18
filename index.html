@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>素心华彩 · 花与书的小世界</title>
+    <title>素心华彩 · 书与花的小世界</title>
     <style>
         /* === 全局 === */
         * {
@@ -72,7 +72,7 @@
             color: #b48a7a;
         }
 
-        /* === 名言轮播区（顶部独立区域） === */
+        /* === 名言轮播区 === */
         .quotes-carousel {
             background: rgba(255, 248, 245, 0.6);
             backdrop-filter: blur(6px);
@@ -83,7 +83,7 @@
             box-shadow: 0 8px 28px rgba(160, 130, 110, 0.06);
             position: relative;
             overflow: hidden;
-            min-height: 130px;
+            min-height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -110,14 +110,65 @@
             pointer-events: none;
         }
 
-        .quote-slide {
-            text-align: center;
-            padding: 0 20px;
-            animation: fadeScroll 80s infinite ease-in-out;
-            max-width: 900px;
+        .quotes-wrapper {
+            position: relative;
+            width: 100%;
+            min-height: 130px;
         }
 
-        /* 20条名言，使用不同的字体风格，循环使用 q1~q6 样式 */
+        /* 每条名言独立定位，实现无重叠轮播 */
+        .quote-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateX(0);
+            pointer-events: none;
+            animation: slideRightFade 120s infinite ease-in-out;
+        }
+
+        /* 每条名言延迟 6 秒 (20条 × 6秒 = 120秒) */
+        .quote-slide:nth-child(1) { animation-delay: 0s; }
+        .quote-slide:nth-child(2) { animation-delay: 6s; }
+        .quote-slide:nth-child(3) { animation-delay: 12s; }
+        .quote-slide:nth-child(4) { animation-delay: 18s; }
+        .quote-slide:nth-child(5) { animation-delay: 24s; }
+        .quote-slide:nth-child(6) { animation-delay: 30s; }
+        .quote-slide:nth-child(7) { animation-delay: 36s; }
+        .quote-slide:nth-child(8) { animation-delay: 42s; }
+        .quote-slide:nth-child(9) { animation-delay: 48s; }
+        .quote-slide:nth-child(10) { animation-delay: 54s; }
+        .quote-slide:nth-child(11) { animation-delay: 60s; }
+        .quote-slide:nth-child(12) { animation-delay: 66s; }
+        .quote-slide:nth-child(13) { animation-delay: 72s; }
+        .quote-slide:nth-child(14) { animation-delay: 78s; }
+        .quote-slide:nth-child(15) { animation-delay: 84s; }
+        .quote-slide:nth-child(16) { animation-delay: 90s; }
+        .quote-slide:nth-child(17) { animation-delay: 96s; }
+        .quote-slide:nth-child(18) { animation-delay: 102s; }
+        .quote-slide:nth-child(19) { animation-delay: 108s; }
+        .quote-slide:nth-child(20) { animation-delay: 114s; }
+
+        /* 关键帧：出现 → 停留 → 向右滑动消失 → 完全隐藏等待 */
+        @keyframes slideRightFade {
+            /* 0-5%: 从右侧进入（准备阶段，实际从中间出现） */
+            0%   { opacity: 0; transform: translateX(0); }
+            /* 5%-10%: 淡入出现在中间 */
+            5%   { opacity: 0; transform: translateX(0); }
+            10%  { opacity: 1; transform: translateX(0); }
+            /* 10%-75%: 稳定显示（约 6 秒中的中间 4 秒） */
+            75%  { opacity: 1; transform: translateX(0); }
+            /* 80%-90%: 向右滑动并淡出 */
+            80%  { opacity: 1; transform: translateX(0); }
+            90%  { opacity: 0; transform: translateX(40px); }
+            /* 90%-100%: 完全隐藏，等待下一轮 */
+            100% { opacity: 0; transform: translateX(40px); }
+        }
+
+        /* 字体风格：六种不同样式循环使用 */
         .quote-slide .q1 { font-size: 22px; font-weight: 300; font-style: italic; letter-spacing: 2px; color: #6a4e3e; }
         .quote-slide .q2 { font-size: 26px; font-weight: 400; letter-spacing: 3px; color: #8a6a5a; }
         .quote-slide .q3 { font-size: 20px; font-weight: 300; font-style: normal; letter-spacing: 1px; color: #7a5a4a; }
@@ -134,53 +185,6 @@
             letter-spacing: 2px;
         }
         .quote-slide .source::before { content: "—— "; }
-
-        /* 轮播淡入淡出 + 缓慢滚动效果，每条4秒，20条共80秒 */
-        @keyframes fadeScroll {
-            0%   { opacity: 0; transform: translateY(12px); }
-            4%   { opacity: 1; transform: translateY(0); }
-            20%  { opacity: 1; transform: translateY(0); }
-            24%  { opacity: 0; transform: translateY(-12px); }
-            100% { opacity: 0; transform: translateY(-12px); }
-        }
-
-        /* 20条名言，每条延迟4秒 */
-        .quote-slide:nth-child(1) { animation-delay: 0s; }
-        .quote-slide:nth-child(2) { animation-delay: 4s; }
-        .quote-slide:nth-child(3) { animation-delay: 8s; }
-        .quote-slide:nth-child(4) { animation-delay: 12s; }
-        .quote-slide:nth-child(5) { animation-delay: 16s; }
-        .quote-slide:nth-child(6) { animation-delay: 20s; }
-        .quote-slide:nth-child(7) { animation-delay: 24s; }
-        .quote-slide:nth-child(8) { animation-delay: 28s; }
-        .quote-slide:nth-child(9) { animation-delay: 32s; }
-        .quote-slide:nth-child(10) { animation-delay: 36s; }
-        .quote-slide:nth-child(11) { animation-delay: 40s; }
-        .quote-slide:nth-child(12) { animation-delay: 44s; }
-        .quote-slide:nth-child(13) { animation-delay: 48s; }
-        .quote-slide:nth-child(14) { animation-delay: 52s; }
-        .quote-slide:nth-child(15) { animation-delay: 56s; }
-        .quote-slide:nth-child(16) { animation-delay: 60s; }
-        .quote-slide:nth-child(17) { animation-delay: 64s; }
-        .quote-slide:nth-child(18) { animation-delay: 68s; }
-        .quote-slide:nth-child(19) { animation-delay: 72s; }
-        .quote-slide:nth-child(20) { animation-delay: 76s; }
-
-        .quotes-wrapper {
-            position: relative;
-            width: 100%;
-            min-height: 120px;
-        }
-
-        .quote-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            opacity: 0;
-            padding: 10px 20px;
-            pointer-events: none;
-        }
 
         /* === 卡片网格 === */
         .grid {
@@ -269,7 +273,7 @@
             grid-column: 1 / -1;
         }
 
-        /* 照片区域（三张真实图片） */
+        /* 照片区域 */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -301,7 +305,6 @@
             display: block;
         }
 
-        /* 标签 */
         .tag {
             display: inline-block;
             background: #f0e4da;
@@ -311,13 +314,6 @@
             color: #6a5548;
             margin-right: 8px;
             margin-top: 6px;
-        }
-
-        .chip-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 16px;
         }
 
         .chip {
@@ -410,11 +406,11 @@
             }
             .quotes-carousel {
                 padding: 20px 16px;
-                min-height: 150px;
+                min-height: 160px;
             }
             .quote-slide .q1, .quote-slide .q2, .quote-slide .q3,
             .quote-slide .q4, .quote-slide .q5, .quote-slide .q6 {
-                font-size: 18px;
+                font-size: 17px;
             }
         }
     </style>
@@ -437,10 +433,9 @@
         </div>
     </div>
 
-    <!-- === 顶部名言轮播区（20条，每条4秒） === -->
+    <!-- === 顶部名言轮播区（20条，每条6秒，向右滑动消失） === -->
     <div class="quotes-carousel">
         <div class="quotes-wrapper">
-            <!-- 每条名言使用不同的字体类，实现字体变化 -->
             <div class="quote-slide"><div class="q1">把忍受变为享受，是精神对于物质的最大胜利。</div><span class="source">马克思</span></div>
             <div class="quote-slide"><div class="q2">与其用华丽的外衣装饰自己，不如用知识武装自己。</div><span class="source">马克思</span></div>
             <div class="quote-slide"><div class="q3">后悔过去，不如奋斗将来。</div><span class="source">马克思</span></div>
@@ -507,7 +502,7 @@
             </div>
         </div>
 
-        <!-- 生活瞬间 + 三张真实照片（1.png 2.png 3.png） -->
+        <!-- 生活瞬间 + 三张真实照片 -->
         <div class="card">
             <div class="card-title">生活瞬间</div>
             <p style="font-size: 14px; color: #7a6658;">用镜头捕捉温暖的日常 🌸</p>
